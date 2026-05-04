@@ -71,12 +71,13 @@ public class MainCopyOnWriteArrayList {
         // CREATE A LIST, create 2 thread -> READER THREAD AND WRITER THREAD
         List<String> sharedList = new ArrayList<>();
         //CopyOnWriteArrayList<String> sharedList = new CopyOnWriteArrayList<>();
+
         sharedList.add("Item1");
         sharedList.add("Item2");
         sharedList.add("Item3");
 
-//list me iteration bar bar item ko print kre
-//infinite loop chal haha and shared list ko padh rhe h bar bar usi time hamne write knne ki koshish kri (Add and remove ele)
+        //list me iteration bar bar item ko print kre
+        // infinite loop chal haha and shared list ko padh rhe h bar bar usi time hamne write knne ki koshish kri (Add and remove ele)
         Thread readerThread = new Thread(()-> {
             try {
                 while (true) {
@@ -85,6 +86,7 @@ public class MainCopyOnWriteArrayList {
                         Thread.sleep(100); //SMALL DELAY TO SIMULATE WORK
                     }
                 }
+
             } catch (Exception e) {
                 System.out.println("Exception in reader thread: " + e);
             }
@@ -96,17 +98,20 @@ public class MainCopyOnWriteArrayList {
         Thread.sleep(500); //Delay to allow reading to start first //0.5sec Lg ra
         sharedList.add("Item4");
         System.out.println("Item4 added to list");
+
+        Thread.sleep(500);
         sharedList.remove("Item1");
         System.out.println("Removed Item from the list");
     }catch(Exception e){
         e.printStackTrace();
-    }});
+    }
+    });
 
     readerThread.start();
     writerThread. start();
     //EXCEPTION: CONCURRENT MODIFICATION EXCEPTION
 
      //bcoz writer thread ne modify kone ka try kiva while the reading thread is iterating over the list beez array list dont support this
-     // but when we write CopyOnWriteArrayList no exception will come................. infinite loop
+     // but when we write CopyOnWriteArrayList no exception will come................. infinite loop works
     }
 }
