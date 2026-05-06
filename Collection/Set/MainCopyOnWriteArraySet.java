@@ -17,7 +17,7 @@ public class MainCopyOnWriteArraySet {
         // ITERATORS DO NOT REFLECT MODIFICATIONS -> BCOZ ONCE LOOP ENDS THEN ONLY LATEST MODIFICATION WILL REFLECT BCOZ LOOP OLD COPY OF ARRAY PE CHAL RAHA (STABLE) -> PURANI = NEW (LOOP SE NIKALNE KE BADH)
 
         CopyOnWriteArraySet<Integer> copyOnWriteArraySet = new CopyOnWriteArraySet<>();
-        ConcurrentSkipListSet<Integer> concurrentSkipListSet = new ConcurrentSkipListSet<>():
+        ConcurrentSkipListSet<Integer> concurrentSkipListSet = new ConcurrentSkipListSet<>();
         for (int i = 1; i <= 5 ; i++) {
             copyOnWriteArraySet.add(i);
             concurrentSkipListSet.add(i);
