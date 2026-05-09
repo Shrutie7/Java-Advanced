@@ -60,15 +60,23 @@ public class IntermediateOperationStream {
         // Flatten nested structure (eg. lists within lists) so that they can be processed as a single sequence of elements //Transform and flatten elements at the same time
         List<List<String>> listOfLists = Arrays.asList(Arrays.asList("apple", "banana"), Arrays.asList("orange", "kiwi"),Arrays.asList("pear", "grape"));
         System.out.println(listOfLists.get(1).get(1)); // kiwi
+
         // create all the elements in list of list to upper case and we need flat list // means in 1 sequence // in flat map make x.stream() in 1 single stream unified stream
         System.out.println(listOfLists.stream().flatMap(x->x.stream()).map(x->x.toUpperCase()).collect(Collectors.toList()));
         System.out.println(listOfLists.stream().flatMap(x->x.stream()).map(String::toUpperCase).toList());//same as above using method reference and .toList()
+
         // we can also transform a stream using flatMap other than just flattening it
         List<String> sentences = Arrays.asList(
                 "Hello World",
                 "Java streams are powerful",
                 "flatMap is useful"
-        ) ;
-        System.out.println(sentences.stream().flatMap (sentence->Arrays.stream(sentence.split(" "))).map (x->x.toUpperCase()).toList());
+        );
+        System.out.println(sentences
+                .stream()
+                .flatMap (sentence->Arrays.stream(sentence.split(" ")))
+                .map (x->x.toUpperCase())
+                .toList());// split on basis of space and make it into stream and map to upper case
+
+        //for better readability write in next line each method
     }
 }
